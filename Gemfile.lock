@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    Ascii85 (1.1.0)
     actioncable (7.0.4.3)
       actionpack (= 7.0.4.3)
       activesupport (= 7.0.4.3)
@@ -68,6 +69,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.4)
       public_suffix (>= 2.0.2, < 6.0)
+    afm (0.2.2)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -96,6 +98,7 @@ GEM
     execjs (2.8.1)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    hashery (2.1.2)
     i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
@@ -130,6 +133,12 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.1-x86_64-darwin)
       racc (~> 1.4)
+    pdf-reader (2.11.0)
+      Ascii85 (~> 1.0)
+      afm (~> 0.2.1)
+      hashery (~> 2.0)
+      ruby-rc4
+      ttfunk
     public_suffix (5.0.1)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -176,6 +185,7 @@ GEM
     reline (0.3.4)
       io-console (~> 0.5)
     rexml (3.2.5)
+    ruby-rc4 (0.1.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.9.1)
       rexml (~> 3.2, >= 3.2.5)
@@ -198,6 +208,7 @@ GEM
     thor (1.2.2)
     tilt (2.1.0)
     timeout (0.3.2)
+    ttfunk (1.7.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     web-console (4.2.0)
@@ -225,6 +236,7 @@ DEPENDENCIES
   capybara
   debug
   jbuilder
+  pdf-reader (~> 2.11)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
   react-rails (= 2.7)

@@ -38,3 +38,5 @@ group :test do
 end
 
 gem "react-rails", "= 2.7"
+
+gem "pdf-reader", "~> 2.11"
