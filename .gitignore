@@ -1,0 +1,4 @@
+static/pandp12p.pdf
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
