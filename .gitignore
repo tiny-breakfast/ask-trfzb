@@ -9,3 +9,5 @@ static/pandp12p.pdf
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+/log/development.log
+/tmp/cache/
