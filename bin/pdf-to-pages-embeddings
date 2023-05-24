@@ -25,7 +25,7 @@ def extract_pages(page, page_number)
         content: content,
         # 4 is a magic number.
         # source: https://github.com/slavingia/askmybook/blob/b0c0f6a/scripts/pdf_to_pages_embeddings.py#L50
-        tokens: TOKENIZER.text_to_words(text).length + 4, 
+        tokens: TOKENIZER.text_to_words(content).length + 4, 
     }
 end
 
