@@ -8,7 +8,7 @@ require 'pdf-reader'
 
 BOOK = './static/pandp12p.pdf'
 
-TOKENIZER = BlingFire::Model.new('./static/gpt2.bin')
+TOKENIZER = BlingFire::Model.new
 
 DOC_EMBEDDINGS_MODEL = 'text-search-curie-doc-001'
 
