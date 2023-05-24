@@ -21,7 +21,7 @@ def extract_pages(page, page_number)
     content = page_text.split().join(" ")
     # puts("page text: " + content)
     {
-        title: "Page #{str(page_number)}",
+        title: "Page #{page_number}",
         content: content,
         # 4 is a magic number.
         # source: https://github.com/slavingia/askmybook/blob/b0c0f6a/scripts/pdf_to_pages_embeddings.py#L50
