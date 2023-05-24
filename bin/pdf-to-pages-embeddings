@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'pdf-reader'
 require 'blingfire'
-require 'ruby-openai'
+require 'csv'
+require 'openai'
+require 'pdf-reader'
 
 BOOK = './static/pandp12p.pdf'
 
