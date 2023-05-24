@@ -14,8 +14,9 @@ DOC_EMBEDDINGS_MODEL = 'text-search-curie-doc-001'
 
 OPEN_AI_CLIENT = OpenAI::Client.new(access_token: ENV['OPEN_AI_ACCESS_TOKEN'])
 
-def extract_pages(page_text, page_number)
-    return [] if page_text.count == 0
+def extract_pages(page, page_number)
+    page_text = page.text
+    return [] if page_text.length == 0
 
     content = page_text.split().join(" ")
     # puts("page text: " + content)
