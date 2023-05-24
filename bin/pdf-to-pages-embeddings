@@ -30,6 +30,9 @@ def extract_pages(page, page_number)
 end
 
 def get_doc_embedding(text)
+    # I'm getting rate limited. I can ask for a higher limit, I
+    # guess. or I can try to rejigger the code so that it tries to
+    # respect the 60 rpm rate limit...
     result = OPEN_AI_CLIENT.embeddings(
         parameters: {
             model: DOC_EMBEDDINGS_MODEL,
@@ -38,6 +41,8 @@ def get_doc_embedding(text)
     )
 
     return result["data"][0]["embedding"]
+rescue => e
+    binding.irb
 end
 
 # Create an embedding for each row in the dataframe using the OpenAI Embeddings API.
