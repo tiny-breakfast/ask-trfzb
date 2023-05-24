@@ -14,7 +14,6 @@ which ports [askmybook][askmybook] to Ruby and swaps out the book.
 
 # to-do
 
-* (in progress) generate embeddings with openai
 * render a simple react component; shakapacker specific instructions here https://github.com/reactjs/react-rails
 
 [challenge-docs]: https://gumroad.notion.site/Product-engineering-challenge-f7aa85150edd41eeb3537aae4632619f
