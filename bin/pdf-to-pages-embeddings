@@ -1,0 +1,91 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'pdf-reader'
+require 'blingfire'
+require 'ruby-openai'
+
+BOOK = './static/pandp12p.pdf'
+
+TOKENIZER = BlingFire::Model.new('./static/gpt2.bin')
+
+DOC_EMBEDDINGS_MODEL = 'text-search-curie-doc-001'
+
+OPEN_AI_CLIENT = OpenAI::Client.new(access_token: ENV['OPEN_AI_ACCESS_TOKEN'])
+
+def extract_pages(page_text, page_number)
+    return [] if page_text.count == 0
+
+    content = page_text.split().join(" ")
+    # puts("page text: " + content)
+    {
+        title: "Page #{str(page_number)}",
+        content: content,
+        # 4 is a magic number.
+        # source: https://github.com/slavingia/askmybook/blob/b0c0f6a/scripts/pdf_to_pages_embeddings.py#L50
+        tokens: TOKENIZER.text_to_words(text).length + 4, 
+    }
+end
+
+def get_doc_embedding(text)
+    result = OPEN_AI_CLIENT.embeddings(
+        parameters: {
+            model: DOC_EMBEDDINGS_MODEL,
+            input: text
+        }
+    )
+
+    return result["data"][0]["embedding"]
+end
+
+# Create an embedding for each row in the dataframe using the OpenAI Embeddings API.
+# Return a dictionary that maps between each embedding vector and the index of the row that it corresponds to.
+def compute_doc_embeddings(pages)
+    pages.reduce({}).with_index do |embeddings, page, index|
+        embeddings[index] = get_doc_embedding(page[:content])
+    end
+end
+
+def main()
+    reader = PDF::Reader.new(BOOK)
+    pages =
+        reader.
+            pages.
+            map.with_index(&method(:extract_pages)).
+            filter do |page|
+                # 2046 is a magic number.
+                # source: https://github.com/slavingia/askmybook/blob/b0c0f6a/scripts/pdf_to_pages_embeddings.py#L70 
+                page[:tokens] < 2046
+            end
+
+    pages_csv = "#{filename}.pages.csv"
+    File.open(pages_csv, 'w') do |file|
+        csv = CSV.new(file, headers: ["title", "content", "tokens"], write_headers: true)
+        pages.each do |page|
+            row = [ page[:title], page[:content], page[:tokens] ]
+            csv << row
+        end
+    end
+
+    doc_embeddings = compute_doc_embeddings(pages)
+
+    embeddings_csv = "#{filename}.embeddings.csv"
+    File.open(embeddings_csv, 'w') do |file|
+        csv = CSV.new(file, headers: ["title", *(0..4095).to_a], write_headers: true)
+        doc_embeddings.each do |(index, embedding)|
+            # while
+            # https://github.com/slavingia/askmybook/blob/b0c0f6a/scripts/pdf_to_pages_embeddings.py#L90
+            # refers to this index as the "the row that it corresponds
+            # to", further below, at
+            # https://github.com/slavingia/askmybook/blob/b0c0f6a/scripts/pdf_to_pages_embeddings.py#L105
+            # it's treated as a page number. I think that this is not
+            # accurate since we've apparently already excluded pages
+            # with more than 2046 tokens. I'm not sure what the intent
+            # is, so I'm just gonna monkey-see-monkey-do for now.
+            row = [ "Page #{(index + 1)}", *embedding ]
+            csv << row
+        end
+    end
+end
+
+main()
