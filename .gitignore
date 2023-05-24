@@ -10,5 +10,5 @@ static/pandp12p.pdf
 yarn-debug.log*
 .yarn-integrity
 /log/development.log
-/tmp/cache/
+/tmp/*
 /static/gpt2.bin
