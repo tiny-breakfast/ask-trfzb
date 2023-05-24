@@ -12,10 +12,10 @@ which ports [askmybook][askmybook] to Ruby and swaps out the book.
   "the Minimalist Entrepreneur" better than something shorter or
   something longer.
 
-# todo
+# to-do
 
+* (in progress) generate embeddings with openai
 * render a simple react component; shakapacker specific instructions here https://github.com/reactjs/react-rails
-* parse the pdf and generate embeddings with openai
 
 [challenge-docs]: https://gumroad.notion.site/Product-engineering-challenge-f7aa85150edd41eeb3537aae4632619f
 [askmybook]: https://github.com/slavingia/askmybook
