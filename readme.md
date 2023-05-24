@@ -14,7 +14,9 @@ which ports [askmybook][askmybook] to Ruby and swaps out the book.
 
 # to-do
 
-* render a simple react component; shakapacker specific instructions here https://github.com/reactjs/react-rails
+* render a fancier react component; shakapacker specific instructions
+  here https://github.com/reactjs/react-rails what should it be?
+  perhaps the form to input a question?
 
 [challenge-docs]: https://gumroad.notion.site/Product-engineering-challenge-f7aa85150edd41eeb3537aae4632619f
 [askmybook]: https://github.com/slavingia/askmybook
