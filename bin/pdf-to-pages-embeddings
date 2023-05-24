@@ -60,7 +60,7 @@ def main()
                 page[:tokens] < 2046
             end
 
-    pages_csv = "#{filename}.pages.csv"
+    pages_csv = "#{BOOK}.pages.csv"
     File.open(pages_csv, 'w') do |file|
         csv = CSV.new(file, headers: ["title", "content", "tokens"], write_headers: true)
         pages.each do |page|
@@ -71,7 +71,7 @@ def main()
 
     doc_embeddings = compute_doc_embeddings(pages)
 
-    embeddings_csv = "#{filename}.embeddings.csv"
+    embeddings_csv = "#{BOOK}.embeddings.csv"
     File.open(embeddings_csv, 'w') do |file|
         csv = CSV.new(file, headers: ["title", *(0..4095).to_a], write_headers: true)
         doc_embeddings.each_with_index do |embedding, index|
