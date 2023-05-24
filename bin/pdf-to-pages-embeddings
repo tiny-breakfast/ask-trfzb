@@ -41,8 +41,8 @@ end
 # Create an embedding for each row in the dataframe using the OpenAI Embeddings API.
 # Return a dictionary that maps between each embedding vector and the index of the row that it corresponds to.
 def compute_doc_embeddings(pages)
-    pages.reduce({}).with_index do |embeddings, page, index|
-        embeddings[index] = get_doc_embedding(page[:content])
+    pages.map do |page|
+        get_doc_embedding(page[:content])
     end
 end
 
@@ -72,7 +72,7 @@ def main()
     embeddings_csv = "#{filename}.embeddings.csv"
     File.open(embeddings_csv, 'w') do |file|
         csv = CSV.new(file, headers: ["title", *(0..4095).to_a], write_headers: true)
-        doc_embeddings.each do |(index, embedding)|
+        doc_embeddings.each_with_index do |embedding, index|
             # while
             # https://github.com/slavingia/askmybook/blob/b0c0f6a/scripts/pdf_to_pages_embeddings.py#L90
             # refers to this index as the "the row that it corresponds
