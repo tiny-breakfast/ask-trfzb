@@ -57,6 +57,8 @@ class QuestionForm extends React.Component {
         </p>
 
         the answer to the default question is almost too good. is it possible the model was already trained on Pride and Prejudice? perhaps I need to find another book.
+        I seem to not be the first persono to ask this question: https://news.yahoo.com/top-50-books-being-used-100200591.html
+        it's best to assume that yes, it knows Pride & Prejudice. let's find another book, I guess''
       </React.Fragment>
     );
   }
