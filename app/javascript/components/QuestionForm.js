@@ -46,13 +46,7 @@ function QuestionForm(props) {
         </button>
       </form>
 
-      well, this thing isn't re-rendering, and it's clearly because I don't know how to use react.
-      maybe try this? https://react.dev/learn/passing-data-deeply-with-context
       <Answer answer={answer}/>
-
-      <p style={{display: answer === undefined ? 'none' : 'block' }}>
-        {answer}
-      </p>
 
       the answer to the default question is almost too good. is it possible the model was already trained on Pride and Prejudice? perhaps I need to find another book.
       I seem to not be the first persono to ask this question: https://news.yahoo.com/top-50-books-being-used-100200591.html
