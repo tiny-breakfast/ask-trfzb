@@ -6,14 +6,12 @@ class QuestionForm extends React.Component {
   }
 
   handleSubmit(e) {
-    // Prevent the browser from reloading the page
     e.preventDefault();
 
     // Read the form data
     const form = e.target;
     const formData = new FormData(form);
 
-    // You can pass formData as a fetch body directly:
     fetch("/questions", {
       method: form.method,
       body: formData,
@@ -36,8 +34,6 @@ class QuestionForm extends React.Component {
 
   render () {
     return (
-      // do I need action="/" ? do I want that? I think so - the
-      // QuestionsController will just be the root.
       <form method="post" onSubmit={this.handleSubmit}>
         <label>
           Ask a question: <textarea name="question" id="question" value={this.state.question} onChange={this.handleQuestionChange.bind(this)}></textarea>
