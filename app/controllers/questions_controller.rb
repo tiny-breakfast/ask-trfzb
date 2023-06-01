@@ -9,6 +9,22 @@ class QuestionsController < ApplicationController
     end
 
     def create
-        render json: {"yabba" => "dabba"}
+        question = params[:question].strip
+        question += '?' unless question.ends_with?('?')
+
+        previously_asked_question = Question.find_one(question: question)
+
+        if previously_asked_question
+            previously_asked_question.ask_count += 1
+            previously_asked_question.save!
+            render json: { question: previously_asked_question.question, answer: previously_asked_question.answer, id: previously_asked_question.id }
+            return
+        end
+
+        answer, context = OpenAI.answer_question(question)
+
+        question_record = Question.create!(question: question, answer: answer, context: context)
+
+        render json: { question: question, answer: answer, id: question_record.id }
     end
 end
