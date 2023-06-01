@@ -14,11 +14,20 @@ class QuestionForm extends React.Component {
     const formData = new FormData(form);
 
     // You can pass formData as a fetch body directly:
-    fetch('/some-api', { method: form.method, body: formData });
-
-    // Or you can work with it as a plain object:
-    const formJson = Object.fromEntries(formData.entries());
-    console.log(formJson);
+    fetch("/questions", {
+      method: form.method,
+      body: formData,
+      headers: {
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+      },
+    }).then((data) => {
+      if (data.ok) {
+        const result = data.json();
+        console.log("result", result)
+        return result
+      }
+      throw new Error("some kind of error, wish I knew");
+    })
   }
 
   handleQuestionChange(event) {

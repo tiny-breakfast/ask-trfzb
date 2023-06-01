@@ -7,4 +7,8 @@ class QuestionsController < ApplicationController
             question: DEFAULT_QUESTION
         }
     end
+
+    def create
+        render json: {"yabba" => "dabba"}
+    end
 end
