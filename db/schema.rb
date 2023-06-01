@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_31_212023) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_01_043736) do
   create_table "questions", force: :cascade do |t|
     t.text "question"
     t.text "context"
     t.text "answer"
-    t.integer "ask_count"
+    t.integer "ask_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
