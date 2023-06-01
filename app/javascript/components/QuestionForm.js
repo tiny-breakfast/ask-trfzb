@@ -27,7 +27,7 @@ class QuestionForm extends React.Component {
       }
       throw new Error("some kind of error, wish I knew");
     }).then((response) => {
-      this.setState({ answer: response.answer})
+      this.setState({ answer: response.answer })
     })
   }
 
@@ -38,7 +38,7 @@ class QuestionForm extends React.Component {
   render () {
     return (
       <React.Fragment>
-        <form method="post" onSubmit={this.handleSubmit}>
+        <form method="post" onSubmit={this.handleSubmit.bind(this)}>
           <label>
             Ask a question: <textarea name="question" id="question" value={this.state.question} onChange={this.handleQuestionChange.bind(this)}></textarea>
           </label>
@@ -48,13 +48,20 @@ class QuestionForm extends React.Component {
           </button>
         </form>
 
+        well, this thing isn't re-rendering, and it's clearly because I don't know how to use react.
+        maybe try this? https://react.dev/learn/passing-data-deeply-with-context
         <Answer answer={this.state.answer}/>
+
+        <p style={{display: this.state.answer === undefined ? 'none' : 'block' }}>
+          {this.state.answer}
+        </p>
       </React.Fragment>
     );
   }
 }
 
 QuestionForm.propTypes = {
-  answer: PropTypes.string
+  question: PropTypes.string,
+  answer: PropTypes.string,
 };
 export default QuestionForm
