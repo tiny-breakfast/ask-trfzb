@@ -4,14 +4,17 @@ require 'matrix'
 
 module Answer
     BOOK = './static/pandp12p.pdf'
-    PAGES_CSV = CSV.read("#{BOOK}.pages.csv")
+    PAGES_CSV = CSV.read("#{BOOK}.pages.csv").drop(1).each do |row|
+        tokens = row[2]
+        row[2] = Integer(tokens)
+    end
     # key is "Page X", value is an 4096 element array of floats
     EMBEDDINGS =
         begin
             # 14M raw on disk.
             CSV.read("#{BOOK}.embeddings.csv").drop(1).reduce({}) do |embeddings, row|
                 title = row[0]
-                embeddings[title] = row.drop(1)
+                embeddings[title] = row.drop(1).map(&method(:Float))
                 embeddings
             end
         end
@@ -63,7 +66,7 @@ module Answer
                 embeddings,
             )
 
-            response = OPEN_AI_CLIENT.completion(
+            response = OPEN_AI_CLIENT.completions(
                 parameters:  {
                     prompt: prompt,
                     **COMPLETIONS_API_PARAMS,
@@ -71,7 +74,7 @@ module Answer
             )
 
             return [
-                response["choices"][0]["text"].strip(" \n"),
+                response["choices"][0]["text"].strip,
                 context,
             ]
         end
@@ -83,12 +86,12 @@ module Answer
             chosen_sections_len = 0
             # chosen_sections_indexes = []
 
-            most_relevant_document_sections.each do |section_index|
-                document_section = pages_csv.drop(1).select { |row| title = row[0]; title == section_index }
+            most_relevant_document_sections.each do |(_, section_index)|
+                document_section = pages_csv.select { |row| title = row[0]; title == section_index }.first
                 content = document_section[1]
                 tokens = document_section[2]
-                
-                chosen_sections_len += tokens + SEPARATOR_LEN
+
+                chosen_sections_len += (tokens + SEPARATOR_LEN)
 
                 if chosen_sections_len > MAX_SECTION_LEN
                     space_left = MAX_SECTION_LEN - chosen_sections_len - SEPARATOR.length
@@ -103,9 +106,9 @@ module Answer
 
             context = chosen_sections.join("")
 
-            prompt = header +
+            prompt = HEADER +
                 context +
-                QUESTIONS_AND_ANSWERS.take(10).map { |q, a| "\n\n\nQ: #{q}\n\nA: #{a}" } +
+                QUESTIONS_AND_ANSWERS.take(10).map { |q, a| "\n\n\nQ: #{q}\n\nA: #{a}" }.join("") +
                 "\n\n\nQ: #{question}\n\nA: "
             
             return [

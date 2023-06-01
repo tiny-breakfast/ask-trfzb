@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
         question = params[:question].strip
         question += '?' unless question.ends_with?('?')
 
-        previously_asked_question = Question.find_one(question: question)
+        previously_asked_question = Question.where(question: question).limit(1).first
 
         if previously_asked_question
             previously_asked_question.ask_count += 1
@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
             return
         end
 
-        answer, context = OpenAI.answer_question(question)
+        answer, context = Answer.answer_question(question)
 
         question_record = Question.create!(question: question, answer: answer, context: context)
 
