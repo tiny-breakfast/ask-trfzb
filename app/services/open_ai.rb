@@ -31,7 +31,7 @@ module OpenAI
     SEPARATOR_LEN = 3
 
     # partially cribbed from Wikipedia, partially from Sahil's header
-    HEADER = "Pride and Prejudice is an 1813 novel of manners by Jane Austen. The novel follows the character development of Elizabeth Bennet, the protagonist of the book, who learns about the repercussions of hasty judgments and comes to appreciate the difference between superficial goodness and actual goodness. These are questions and answers about the book. Please keep your answers to three sentences maximum, and speak in complete sentences. Stop speaking once your point is made.\n\nContext that may be useful:\n"
+    HEADER = "Pride and Prejudice is an 1813 novel of manners by Jane Austen. It is set in the early 19th century in southern England. The novel follows the character development of Elizabeth Bennet, the protagonist of the book, who learns about the repercussions of hasty judgments and comes to appreciate the difference between superficial goodness and actual goodness. These are questions and answers about the book. Please keep your answers to three sentences maximum, and speak in complete sentences. Stop speaking once your point is made.\n\nContext that may be useful:\n"
 
     # wholly taken from https://www.sparknotes.com/lit/pride/key-questions-and-answers/
     QUESTIONS_AND_ANSWERS = {
