@@ -1,5 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
+import Answer from "./Answer"
+
 class QuestionForm extends React.Component {
   state = {
     question: this.props.question
@@ -21,10 +23,11 @@ class QuestionForm extends React.Component {
     }).then((data) => {
       if (data.ok) {
         const result = data.json();
-        console.log("result", result)
         return result
       }
       throw new Error("some kind of error, wish I knew");
+    }).then((response) => {
+      this.setState({ answer: response.answer})
     })
   }
 
@@ -34,15 +37,19 @@ class QuestionForm extends React.Component {
 
   render () {
     return (
-      <form method="post" onSubmit={this.handleSubmit}>
-        <label>
-          Ask a question: <textarea name="question" id="question" value={this.state.question} onChange={this.handleQuestionChange.bind(this)}></textarea>
-        </label>
+      <React.Fragment>
+        <form method="post" onSubmit={this.handleSubmit}>
+          <label>
+            Ask a question: <textarea name="question" id="question" value={this.state.question} onChange={this.handleQuestionChange.bind(this)}></textarea>
+          </label>
 
-        <button type="submit" id="ask-button" style={{display: this.props.answer === undefined ? 'block' : 'none' }}>
-          Ask question
-        </button>
-      </form>
+          <button type="submit" id="ask-button" style={{display: this.state.answer === undefined ? 'block' : 'none' }}>
+            Ask question
+          </button>
+        </form>
+
+        <Answer answer={this.state.answer}/>
+      </React.Fragment>
     );
   }
 }
