@@ -7,7 +7,7 @@ class Answer extends React.Component {
 
   render () {
     return (
-      <p style={{display: this.state.answer === undefined ? 'block' : 'none' }}>
+      <p style={{display: this.state.answer === undefined ? 'none' : 'block' }}>
         {this.state.answer}
       </p>
     );
