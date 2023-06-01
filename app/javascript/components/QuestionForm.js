@@ -1,13 +1,12 @@
-import React from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
 import Answer from "./Answer"
 
-class QuestionForm extends React.Component {
-  state = {
-    question: this.props.question
-  }
+function QuestionForm(props) {
+  const [question, setQuestion] = useState(props.question);
+  const [answer, setAnswer] = useState(props.answer);
 
-  handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
 
     // Read the form data
@@ -27,41 +26,39 @@ class QuestionForm extends React.Component {
       }
       throw new Error("some kind of error, wish I knew");
     }).then((response) => {
-      this.setState({ answer: response.answer })
+      setAnswer(response.answer)
     })
   }
 
-  handleQuestionChange(event) {
-    this.setState({ question: event.target.value });
+  function handleQuestionChange(event) {
+    setQuestion(event.target.value);
   }
 
-  render () {
-    return (
-      <React.Fragment>
-        <form method="post" onSubmit={this.handleSubmit.bind(this)}>
-          <label>
-            Ask a question: <textarea name="question" id="question" value={this.state.question} onChange={this.handleQuestionChange.bind(this)}></textarea>
-          </label>
+  return (
+    <React.Fragment>
+      <form method="post" onSubmit={handleSubmit}>
+        <label>
+          Ask a question: <textarea name="question" id="question" value={question} onChange={handleQuestionChange}></textarea>
+        </label>
 
-          <button type="submit" id="ask-button" style={{display: this.state.answer === undefined ? 'block' : 'none' }}>
-            Ask question
-          </button>
-        </form>
+        <button type="submit" id="ask-button" style={{display: answer === undefined ? 'block' : 'none' }}>
+          Ask question
+        </button>
+      </form>
 
-        well, this thing isn't re-rendering, and it's clearly because I don't know how to use react.
-        maybe try this? https://react.dev/learn/passing-data-deeply-with-context
-        <Answer answer={this.state.answer}/>
+      well, this thing isn't re-rendering, and it's clearly because I don't know how to use react.
+      maybe try this? https://react.dev/learn/passing-data-deeply-with-context
+      <Answer answer={answer}/>
 
-        <p style={{display: this.state.answer === undefined ? 'none' : 'block' }}>
-          {this.state.answer}
-        </p>
+      <p style={{display: answer === undefined ? 'none' : 'block' }}>
+        {answer}
+      </p>
 
-        the answer to the default question is almost too good. is it possible the model was already trained on Pride and Prejudice? perhaps I need to find another book.
-        I seem to not be the first persono to ask this question: https://news.yahoo.com/top-50-books-being-used-100200591.html
-        it's best to assume that yes, it knows Pride & Prejudice. let's find another book, I guess''
-      </React.Fragment>
-    );
-  }
+      the answer to the default question is almost too good. is it possible the model was already trained on Pride and Prejudice? perhaps I need to find another book.
+      I seem to not be the first persono to ask this question: https://news.yahoo.com/top-50-books-being-used-100200591.html
+      it's best to assume that yes, it knows Pride & Prejudice. let's find another book, I guess''
+    </React.Fragment>
+  );
 }
 
 QuestionForm.propTypes = {

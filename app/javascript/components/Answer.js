@@ -1,17 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
-class Answer extends React.Component {
-  state = {
-    answer: this.props.answer
-  }
-
-  render () {
-    return (
-      <p style={{display: this.state.answer === undefined ? 'none' : 'block' }}>
-        {this.state.answer}
-      </p>
-    );
-  }
+function Answer(props) {
+  return (
+    <p style={{display: props.answer === undefined ? 'none' : 'block' }}>
+      Answer: {props.answer}
+    </p>
+  );
 }
 
 Answer.propTypes = {
