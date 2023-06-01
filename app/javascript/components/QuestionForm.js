@@ -55,6 +55,8 @@ class QuestionForm extends React.Component {
         <p style={{display: this.state.answer === undefined ? 'none' : 'block' }}>
           {this.state.answer}
         </p>
+
+        the answer to the default question is almost too good. is it possible the model was already trained on Pride and Prejudice? perhaps I need to find another book.
       </React.Fragment>
     );
   }
