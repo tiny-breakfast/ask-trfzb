@@ -16,10 +16,12 @@ OPEN_AI_CLIENT = OpenAI::Client.new(access_token: ENV['OPEN_AI_ACCESS_TOKEN'])
 
 def extract_pages(page, page_number)
     page_text = page.text
-    return [] if page_text.length == 0
+    if page_text.length == 0
+        puts "empty page: #{page_number}"
+        return {}
+    end
 
     content = page_text.split().join(" ")
-    # puts("page text: " + content)
     {
         title: "Page #{page_number}",
         content: content,
@@ -81,7 +83,7 @@ def main()
             filter do |page|
                 # 2046 is a magic number.
                 # source: https://github.com/slavingia/askmybook/blob/b0c0f6a/scripts/pdf_to_pages_embeddings.py#L70 
-                page[:tokens] < 2046
+                page[:tokens] && page[:tokens] < 2046
             end
 
     pages_csv = "#{BOOK}.pages.csv"
