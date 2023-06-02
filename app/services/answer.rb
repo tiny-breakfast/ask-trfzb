@@ -33,15 +33,12 @@ module Answer
     SEPARATOR = "\n* "
     SEPARATOR_LEN = 3
 
-    # partially cribbed from Wikipedia, partially from Sahil's header
-
-    # well shit. If I wanna change the book, then I have to re-do the
-    # header and questions and answers.
-
+    # partially cribbed from https://www.zappa.com/book/real-frank-zappa-book/#/
     BOOK_SUMMARY = "The Real Frank Zappa Book is Frank Zappa's autobiography. Frank Zappa takes us on a wild, funny trip through his life and times. Along the way, Zappa offers his inimitable views on many things such as art, politics and beer.\n"
+    # cribbed from askmybook
     COACHING = "These are questions and answers about the book. Please keep your answers to three sentences maximum, and speak in complete sentences. Stop speaking once your point is made.\n\nContext that may be useful:\n"
 
-    # wholly taken from https://www.sparknotes.com/lit/pride/key-questions-and-answers/
+    # cobbled together from the book itself, and from interview Q&As
     QUESTIONS_AND_ANSWERS = {
         "What was Frank Zappa's biggest problem with school?" => "My biggest problem, throughout school, was that the things they were trying to teach me tended not to be the kinds of things I was interested in. I grew up with poison gas and explosives -- with the children of people who built these things for a living. Did I give a fuck about algebra?",
 
