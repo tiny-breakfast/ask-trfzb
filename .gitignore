@@ -12,3 +12,4 @@ yarn-debug.log*
 /log/development.log
 /tmp/*
 /static/gpt2.bin
+/static/the-real-frank-zappa-book.pdf

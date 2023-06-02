@@ -6,7 +6,7 @@ require 'csv'
 require 'openai'
 require 'pdf-reader'
 
-BOOK = './static/pandp12p.pdf'
+BOOK = './static/the-real-frank-zappa-book.pdf'
 
 TOKENIZER = BlingFire::Model.new
 
