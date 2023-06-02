@@ -110,7 +110,10 @@ def main()
             # accurate since we've apparently already excluded pages
             # with more than 2046 tokens. I'm not sure what the intent
             # is, so I'm just gonna monkey-see-monkey-do for now.
-            row = [ "Page #{(index + 1)}", *embedding ]
+
+            # this should honestly just correspond exactly to whatever
+            # value in pages_csv.
+            row = [ "Page #{(index)}", *embedding ]
             csv << row
         end
     end
