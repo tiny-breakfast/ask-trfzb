@@ -66,10 +66,12 @@ module Answer
             pages_csv = options[:pages_csv] || PAGES_CSV
             embeddings = options[:embeddings] || EMBEDDINGS
 
+            most_relevant_document_sections = order_document_sections_by_query_similarity(question, embeddings)
+
             prompt, context = construct_prompt(
                 question,
                 pages_csv,
-                embeddings,
+                most_relevant_document_sections,
             )
 
             response = OPEN_AI_CLIENT.completions(
@@ -85,9 +87,7 @@ module Answer
             ]
         end
 
-        def construct_prompt(question, pages_csv, embeddings)
-            most_relevant_document_sections = order_document_sections_by_query_similarity(question, embeddings)
-
+        def construct_prompt(question, pages_csv, most_relevant_document_sections)
             chosen_sections = []
             chosen_sections_len = 0
 
