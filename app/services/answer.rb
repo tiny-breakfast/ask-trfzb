@@ -90,7 +90,6 @@ module Answer
 
             chosen_sections = []
             chosen_sections_len = 0
-            # chosen_sections_indexes = []
 
             most_relevant_document_sections.each do |(_, section_index)|
                 document_section = pages_csv.select { |row| title = row[0]; title == section_index }.first
@@ -102,12 +101,10 @@ module Answer
                 if chosen_sections_len > MAX_SECTION_LEN
                     space_left = MAX_SECTION_LEN - chosen_sections_len - SEPARATOR.length
                     chosen_sections << (SEPARATOR + content[0...space_left])
-                    # chosen_sections_indexes << str(section_index)
                     break
                 end
 
                 chosen_sections << (SEPARATOR + content)
-                # chosen_sections_indexes << section_index
             end
 
             context = chosen_sections.join("")
