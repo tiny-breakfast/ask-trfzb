@@ -66,7 +66,7 @@ module Answer
             pages_csv = options[:pages_csv] || PAGES_CSV
             embeddings = options[:embeddings] || EMBEDDINGS
 
-            question_embedding = get_question_embedding(question)
+            question_embedding = get_embedding(question)
             most_relevant_document_sections = order_document_sections_by_query_similarity(question_embedding, embeddings)
 
             prompt, context = construct_prompt(
@@ -136,7 +136,7 @@ module Answer
             end.sort.reverse
         end
 
-        def get_question_embedding(text)
+        def get_embedding(text)
             result = OPEN_AI_CLIENT.embeddings(
                 parameters: {
                     model: QUESTION_EMBEDDINGS_MODEL,
