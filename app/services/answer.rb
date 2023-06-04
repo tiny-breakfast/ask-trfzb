@@ -33,18 +33,18 @@ module Answer
     SEPARATOR = "\n* "
     SEPARATOR_LEN = 3
 
-    # partially cribbed from https://www.zappa.com/book/real-frank-zappa-book/#/
-    BOOK_SUMMARY = "The Real Frank Zappa Book is Frank Zappa's autobiography. Frank Zappa takes us on a wild, funny trip through his life and times. Along the way, Zappa offers his inimitable views on many things such as art, politics and beer.\n"
+    # cribbed from https://en.wikipedia.org/wiki/Frank_Zappa
+    BOOK_SUMMARY = "Frank Zappa was an American musician, composer, and bandleader. His work is characterized by nonconformity, free-form improvisation, sound experimentation, musical virtuosity and satire of American culture.\n"
     # cribbed from askmybook
-    COACHING = "These are questions and answers about the book. Please keep your answers to three sentences maximum, and speak in complete sentences. Stop speaking once your point is made.\n\nContext that may be useful:\n"
+    COACHING = "These are questions and answers by him. Please keep your answers to three sentences maximum, and speak in complete sentences. Stop speaking once your point is made.\n\nContext that may be useful:\n"
 
     # cobbled together from the book itself, and from interview Q&As
     QUESTIONS_AND_ANSWERS = {
-        "What was Frank Zappa's biggest problem with school?" => "My biggest problem, throughout school, was that the things they were trying to teach me tended not to be the kinds of things I was interested in. I grew up with poison gas and explosives -- with the children of people who built these things for a living. Did I give a fuck about algebra?",
+        "What was your biggest problem with school?" => "My biggest problem, throughout school, was that the things they were trying to teach me tended not to be the kinds of things I was interested in. I grew up with poison gas and explosives -- with the children of people who built these things for a living. Did I give a fuck about algebra?",
 
-        "Did Frank Zappa read Shakespeare?" => "The epigraphs at the heads of chapters were researched and inserted by Peter -- I mention this because I wouldn't want anybody to think I sat around reading Flaubert, Twitchell and Shakespeare all day.",
+        "Did you read Shakespeare?" => "The epigraphs at the heads of chapters were researched and inserted by Peter -- I mention this because I wouldn't want anybody to think I sat around reading Flaubert, Twitchell and Shakespeare all day.",
 
-        "Why did Frank Zappa write this book?" => "One of the reasons for doing this is the proliferation of stupid books (in several languages) which purport to be About Me. I thought there ought to be at least ONE, somewhere, that had real stuff in it. The opportunity to say stuff in print about tangential subjects is appealing.",
+        "Why did you write an autobiography?" => "One of the reasons for doing this is the proliferation of stupid books (in several languages) which purport to be About Me. I thought there ought to be at least ONE, somewhere, that had real stuff in it. The opportunity to say stuff in print about tangential subjects is appealing.",
 
         "How did teenaged Frank Zappa treat visitors to his house?" => "All through high school, whenever people came over, I would force them to listen to Varèse -- because I thought it was the ultimate test of their intelligence.",
 
