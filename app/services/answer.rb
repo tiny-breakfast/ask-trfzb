@@ -66,7 +66,8 @@ module Answer
             pages_csv = options[:pages_csv] || PAGES_CSV
             embeddings = options[:embeddings] || EMBEDDINGS
 
-            most_relevant_document_sections = order_document_sections_by_query_similarity(question, embeddings)
+            question_embedding = get_question_embedding(question)
+            most_relevant_document_sections = order_document_sections_by_query_similarity(question_embedding, embeddings)
 
             prompt, context = construct_prompt(
                 question,
@@ -125,9 +126,7 @@ module Answer
         # to find the most relevant sections.
         # 
         # Return the list of document sections, sorted by relevance in descending order.
-        def order_document_sections_by_query_similarity(question, embeddings) # -> list[(float, (str, str))]:
-            question_embedding = get_question_embedding(question)
-
+        def order_document_sections_by_query_similarity(question_embedding, embeddings) # -> list[(float, (str, str))]:
             return embeddings.map do |doc_index, doc_embedding|
                 vector_similarity = Vector[*question_embedding].dot(Vector[*doc_embedding])
                 [
