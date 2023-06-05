@@ -44,3 +44,5 @@ end
 gem "react-rails", "= 2.7"
 
 gem "pdf-reader", "~> 2.11"
+
+gem "rspec-rails", "~> 6.0"
