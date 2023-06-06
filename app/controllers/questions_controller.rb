@@ -34,6 +34,10 @@ class QuestionsController < ApplicationController
     def show
         question_id = params[:id]
         question = Question.find(question_id)
-        render action: 'index', locals: { question: question.question, answer: question.answer, id: question.id }
+        render action: 'index', locals: {
+            question: question.question,
+            answer: question.answer,
+            id: question.id
+        }
     end
 end

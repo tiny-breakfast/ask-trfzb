@@ -8,6 +8,8 @@ const ANSWER_SHOWER_DELAY = 1200
 
 function QuestionForm(props) {
   const [question, setQuestion] = useState(props.question);
+  const [questionId, setQuestionId] = useState(props.questionId);
+  console.log("top level questionId", questionId)
   const [answer, setAnswer] = useState(props.answer);
   const [asking, setAsking] = useState(false);
   const [answerShower, setAnswerShower] = useState(NaN);
@@ -34,6 +36,8 @@ function QuestionForm(props) {
       }
       throw new Error("some kind of error, wish I knew");
     }).then((response) => {
+      console.log("id right before setQuestionId", response.id)
+      setQuestionId(response.id)
       setAnswerShower(
         setTimeout(() => {
           showAnswer(response.answer, 0)
@@ -44,8 +48,8 @@ function QuestionForm(props) {
 
   function showAnswer(text, index) {
     if (index < text.length + 1) {
-
       var interval = randomInteger(30, 70);
+      var interval = 0
       setAnswer(
         // this is probably not performant.
         //
@@ -60,9 +64,10 @@ function QuestionForm(props) {
         }, interval)
       )
     } else {
-      // todo: 
-      // history.pushState({}, null, "/question/" + window.newQuestionId);
-      // $("#ask-another-button").css("display", "block");
+      // todo:
+      // why is id null here?
+      console.log("id", questionId)
+      // history.pushState({}, null, "/questions/" + questionId);
     }
   }
 
