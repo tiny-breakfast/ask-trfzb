@@ -1,4 +1,13 @@
-<h1>Ask "the Real Frank Zappa Book"</h1>
+<div class="header">
+  <div class="logo">
+    <a href="https://www.zappa.com/book/real-frank-zappa-book/#/">
+      <img loading="lazy" src="/cover.jpg"/>
+    </a>
+    <h1>Ask "the Real Frank Zappa Book"</h1>
+  </div>
+</div>
 
 <%= csrf_meta_tags %>
-<%= react_component("QuestionForm", { question: question }) %>
+<div class="main">
+  <%= react_component("QuestionForm", { question: question }) %>
+</div>
