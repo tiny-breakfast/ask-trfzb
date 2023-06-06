@@ -89,9 +89,10 @@ module Answer
                     **COMPLETIONS_API_PARAMS,
                 }
             )
+            answer = response["choices"][0]["text"].strip
 
             return [
-                response["choices"][0]["text"].strip,
+                answer,
                 context,
             ]
         end
