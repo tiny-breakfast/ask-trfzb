@@ -2,9 +2,14 @@ import React, { useState } from "react"
 import PropTypes from "prop-types"
 function Answer(props) {
   return (
-    <p id="answer-container" style={{display: props.answer === undefined ? 'none' : 'block' }}>
-      <strong>Answer:</strong> <span id="answer">{props.answer}</span>
-    </p>
+    <React.Fragment>
+      <p id="answer-container" style={{display: props.answer === undefined ? 'none' : 'block' }}>
+        <strong>Answer:</strong> <span id="answer">{props.answer}</span>
+      </p>
+      <div className="buttons" style={{display: props.answer === undefined ? 'none' : 'block' }}>
+        <button id="ask-another-button">Ask another question</button>
+      </div>
+    </React.Fragment>
   );
 }
 
