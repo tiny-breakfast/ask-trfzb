@@ -5,7 +5,9 @@ class QuestionsController < ApplicationController
 
     def index
         render locals: {
-            question: DEFAULT_QUESTION
+            question: DEFAULT_QUESTION,
+            answer: nil,
+            id: nil,
         }
     end
 

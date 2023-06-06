@@ -9,5 +9,5 @@
 
 <%= csrf_meta_tags %>
 <div class="main">
-  <%= react_component("QuestionForm", { question: question, answer: local_assigns.fetch(:answer, nil) }) %>
+  <%= react_component("QuestionForm", { question: question, answer: answer, id: id }) %>
 </div>
