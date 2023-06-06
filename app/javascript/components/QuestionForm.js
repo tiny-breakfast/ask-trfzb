@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import PropTypes from "prop-types"
 import Answer from "./Answer"
 
@@ -11,6 +11,7 @@ function QuestionForm(props) {
   const [answer, setAnswer] = useState(props.answer);
   const [asking, setAsking] = useState(false);
   const [answerShower, setAnswerShower] = useState(NaN);
+  const questionTextareaRef = useRef(null);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -78,6 +79,8 @@ function QuestionForm(props) {
     // the typing animation?
     clearTimeout(answerShower)
 
+    questionTextareaRef.current.focus()
+
     setAsking(false)
     setAnswer(undefined)
     setAnswerShower(NaN)
@@ -87,7 +90,8 @@ function QuestionForm(props) {
     <React.Fragment>
       <form method="post" onSubmit={handleSubmit}>
         <label>
-          Ask a question: <textarea name="question" id="question" value={question} onChange={handleQuestionChange}></textarea>
+          // is there a way to focus this element and put the cursor in it when the answer isn't set?'
+          Ask a question: <textarea name="question" id="question" value={question} onChange={handleQuestionChange} ref={questionTextareaRef}></textarea>
         </label>
 
         <div className="buttons">
