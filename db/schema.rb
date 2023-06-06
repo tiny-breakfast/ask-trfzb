@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_043736) do
     t.text "question"
     t.text "context"
     t.text "answer"
-    t.integer "ask_count", default: 0
+    t.integer "ask_count", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
