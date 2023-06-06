@@ -93,8 +93,7 @@ function QuestionForm(props) {
         </label>
 
         <div className="buttons">
-          // how to disable this button when asking === true?
-          <button type="submit" id="ask-button" style={{display: answer === undefined ? 'block' : 'none' }}>
+          <button type="submit" id="ask-button" style={{display: answer === undefined ? 'block' : 'none' }} disabled={ asking === true ? "disabled" : "" }>
             { !asking ? "Ask question" : "Asking..." }
           </button>
         </div>
