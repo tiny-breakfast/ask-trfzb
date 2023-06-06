@@ -83,7 +83,7 @@ module Answer
                 most_relevant_document_sections,
             )
 
-            response = OPEN_AI_CLIENT.completions(
+            response = client.completions(
                 parameters:  {
                     prompt: prompt,
                     **COMPLETIONS_API_PARAMS,
