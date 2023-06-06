@@ -41,9 +41,11 @@ function QuestionForm(props) {
           Ask a question: <textarea name="question" id="question" value={question} onChange={handleQuestionChange}></textarea>
         </label>
 
-        <button type="submit" id="ask-button" style={{display: answer === undefined ? 'block' : 'none' }}>
-          Ask question
-        </button>
+        <div className="buttons">
+          <button type="submit" id="ask-button" style={{display: answer === undefined ? 'block' : 'none' }}>
+            Ask question
+          </button>
+        </div>
       </form>
 
       <Answer answer={answer}/>
