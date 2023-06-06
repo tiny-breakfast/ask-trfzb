@@ -2,8 +2,8 @@ import React, { useState } from "react"
 import PropTypes from "prop-types"
 function Answer(props) {
   return (
-    <p style={{display: props.answer === undefined ? 'none' : 'block' }}>
-      Answer: {props.answer}
+    <p id="answer-container" style={{display: props.answer === undefined ? 'none' : 'block' }}>
+      <strong>Answer:</strong> <span id="answer">{props.answer}</span>
     </p>
   );
 }
