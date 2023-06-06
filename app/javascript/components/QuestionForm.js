@@ -48,7 +48,7 @@ function QuestionForm(props) {
         </div>
       </form>
 
-      <Answer answer={answer}/>
+      <Answer answer={answer} setAnswer={setAnswer}/>
     </React.Fragment>
   );
 }
