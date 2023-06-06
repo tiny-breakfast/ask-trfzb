@@ -80,7 +80,7 @@ function QuestionForm(props) {
     questionTextareaRef.current.focus()
 
     setAsking(false)
-    setAnswer(undefined)
+    setAnswer(null)
     setAnswerShower(NaN)
   }
 
@@ -93,7 +93,7 @@ function QuestionForm(props) {
         </label>
 
         <div className="buttons">
-          <button type="submit" id="ask-button" style={{display: answer === undefined ? 'block' : 'none' }} disabled={ asking === true ? "disabled" : "" }>
+          <button type="submit" id="ask-button" style={{display: answer === null ? 'block' : 'none' }} disabled={ asking === true ? "disabled" : "" }>
             { !asking ? "Ask question" : "Asking..." }
           </button>
         </div>
