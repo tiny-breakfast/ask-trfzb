@@ -58,6 +58,10 @@ function QuestionForm(props) {
     setQuestion(event.target.value);
   }
 
+  function reset() {
+    setAsking(false)
+  }
+
   return (
     <React.Fragment>
       <form method="post" onSubmit={handleSubmit}>
@@ -72,7 +76,7 @@ function QuestionForm(props) {
         </div>
       </form>
 
-      <Answer answer={answer} setAnswer={setAnswer}/>
+      <Answer answer={answer} reset={reset}/>
     </React.Fragment>
   );
 }
