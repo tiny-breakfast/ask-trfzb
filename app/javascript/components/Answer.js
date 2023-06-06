@@ -7,6 +7,7 @@ function Answer(props) {
         <strong>Answer:</strong> <span id="answer">{props.answer}</span>
       </p>
       <div className="buttons" style={{display: props.answer === undefined ? 'none' : 'block' }}>
+        // this button doesn't interrupt the typing animation, but it should.
         <button id="ask-another-button" onClick={props.reset}>Ask another question</button>
       </div>
     </React.Fragment>

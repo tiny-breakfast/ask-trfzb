@@ -2,9 +2,14 @@ import React, { useState } from "react"
 import PropTypes from "prop-types"
 import Answer from "./Answer"
 
+// magic number - perhaps just a short delay for suspense or
+// something, or to let the audio start playing.
+const ANSWER_SHOWER_DELAY = 1200
+
 function QuestionForm(props) {
   const [question, setQuestion] = useState(props.question);
   const [answer, setAnswer] = useState(props.answer);
+  const [answerShower, setAnswerShower] = useState(NaN);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -26,7 +31,11 @@ function QuestionForm(props) {
       }
       throw new Error("some kind of error, wish I knew");
     }).then((response) => {
-      showAnswer(response.answer, 0)
+      setAnswerShower(
+        setTimeout(() => {
+          showAnswer(response.answer, 0)
+        }, ANSWER_SHOWER_DELAY)
+      )
     })
   }
 
@@ -59,7 +68,16 @@ function QuestionForm(props) {
   }
 
   function reset() {
+    console.log("reset!")
+    // it would seem that this is strictly ineffective in the upstream
+    // codebase.
+    //
+    // is there a better way to use state to model what's going on in
+    // the typing animation?
+    clearTimeout(answerShower)
+
     setAsking(false)
+    setAnswerShower(NaN)
   }
 
   return (
@@ -84,5 +102,6 @@ function QuestionForm(props) {
 QuestionForm.propTypes = {
   question: PropTypes.string,
   answer: PropTypes.string,
+  answerShower: PropTypes.number,
 };
 export default QuestionForm
