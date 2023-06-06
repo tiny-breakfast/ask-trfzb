@@ -79,9 +79,7 @@ function QuestionForm(props) {
 
     questionTextareaRef.current.focus()
 
-    setAsking(false)
     setAnswer(null)
-    setAnswerShower(NaN)
   }
 
   return (
