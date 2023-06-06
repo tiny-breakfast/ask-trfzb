@@ -17,7 +17,6 @@ function QuestionForm(props) {
 
     setAsking(true)
 
-    // Read the form data
     const form = e.target;
     const formData = new FormData(form);
 
