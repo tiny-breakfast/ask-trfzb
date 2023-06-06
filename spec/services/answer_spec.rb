@@ -35,8 +35,8 @@ RSpec.describe Answer do
 
         expect(open_ai_client).to have_received(:embeddings).with(
             :parameters => {
-                :input=>"What is \"the Real Frank Zappa Book\" about?",
-                :model=>"text-search-curie-query-001",
+                :input => "What is \"the Real Frank Zappa Book\" about?",
+                :model => "text-search-curie-query-001",
             }
         )
 
