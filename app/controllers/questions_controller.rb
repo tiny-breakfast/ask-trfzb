@@ -28,4 +28,10 @@ class QuestionsController < ApplicationController
 
         render json: { question: question, answer: answer, id: question_record.id }
     end
+
+    def show
+        question_id = params[:id]
+        question = Question.find(question_id)
+        render action: 'index', locals: { question: question.question, answer: question.answer, id: question.id }
+    end
 end
