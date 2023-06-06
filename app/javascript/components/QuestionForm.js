@@ -26,8 +26,32 @@ function QuestionForm(props) {
       }
       throw new Error("some kind of error, wish I knew");
     }).then((response) => {
-      setAnswer(response.answer)
+      showAnswer(response.answer, 0)
     })
+  }
+
+  function showAnswer(text, index) {
+    if (index < text.length + 1) {
+
+      var interval = randomInteger(30, 70);
+      setAnswer(
+        // this is probably not performant.
+        //
+        // not sure how to get a concatenative solution to work,
+        // though.
+        text.slice(0, index)
+      )
+      // is settimeout idiomatic in react?
+      setTimeout(function () { showAnswer(text, index + 1); }, interval);
+    } else {
+      // todo: 
+      // history.pushState({}, null, "/question/" + window.newQuestionId);
+      // $("#ask-another-button").css("display", "block");
+    }
+  }
+
+  function randomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   function handleQuestionChange(event) {
