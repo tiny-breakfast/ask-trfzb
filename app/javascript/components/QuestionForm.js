@@ -89,7 +89,6 @@ function QuestionForm(props) {
     <React.Fragment>
       <form method="post" onSubmit={handleSubmit}>
         <label>
-          // is there a way to focus this element and put the cursor in it when the answer isn't set?'
           Ask a question: <textarea name="question" id="question" value={question} onChange={handleQuestionChange} ref={questionTextareaRef}></textarea>
         </label>
 
