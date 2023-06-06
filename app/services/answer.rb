@@ -65,8 +65,16 @@ module Answer
         def answer_question(question, **options)
             pages_csv = options[:pages_csv] || PAGES_CSV
             embeddings = options[:embeddings] || EMBEDDINGS
+            client = options[:client] || OPEN_AI_CLIENT
 
-            question_embedding = get_embedding(question)
+            embedding_result = client.embeddings(
+                parameters: {
+                    model: QUESTION_EMBEDDINGS_MODEL,
+                    input: question,
+                },
+            );
+            question_embedding = embedding_result["data"][0]["embedding"]
+
             most_relevant_document_sections = order_document_sections_by_query_similarity(question_embedding, embeddings)
 
             prompt, context = construct_prompt(
@@ -134,17 +142,6 @@ module Answer
                     doc_index,
                 ]
             end.sort.reverse
-        end
-
-        def get_embedding(text)
-            result = OPEN_AI_CLIENT.embeddings(
-                parameters: {
-                    model: QUESTION_EMBEDDINGS_MODEL,
-                    input: text,
-                },
-            )
-
-            return result["data"][0]["embedding"]
         end
     end
 end
