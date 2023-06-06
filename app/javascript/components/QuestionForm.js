@@ -9,10 +9,13 @@ const ANSWER_SHOWER_DELAY = 1200
 function QuestionForm(props) {
   const [question, setQuestion] = useState(props.question);
   const [answer, setAnswer] = useState(props.answer);
+  const [asking, setAsking] = useState(false);
   const [answerShower, setAnswerShower] = useState(NaN);
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    setAsking(true)
 
     // Read the form data
     const form = e.target;
@@ -77,6 +80,7 @@ function QuestionForm(props) {
     clearTimeout(answerShower)
 
     setAsking(false)
+    setAnswer(undefined)
     setAnswerShower(NaN)
   }
 
@@ -88,8 +92,9 @@ function QuestionForm(props) {
         </label>
 
         <div className="buttons">
+          // how to disable this button when asking === true?
           <button type="submit" id="ask-button" style={{display: answer === undefined ? 'block' : 'none' }}>
-            Ask question
+            { !asking ? "Ask question" : "Asking..." }
           </button>
         </div>
       </form>
@@ -102,6 +107,7 @@ function QuestionForm(props) {
 QuestionForm.propTypes = {
   question: PropTypes.string,
   answer: PropTypes.string,
+  asking: PropTypes.bool,
   answerShower: PropTypes.number,
 };
 export default QuestionForm
