@@ -49,7 +49,6 @@ function QuestionForm(props) {
   function showAnswer(text, index) {
     if (index < text.length + 1) {
       var interval = randomInteger(30, 70);
-      var interval = 0
 
       setAnswer(
         // this is probably not performant.
