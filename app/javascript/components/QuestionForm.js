@@ -53,8 +53,12 @@ function QuestionForm(props) {
         // though.
         text.slice(0, index)
       )
-      // is settimeout idiomatic in react?
-      setTimeout(function () { showAnswer(text, index + 1); }, interval);
+
+      setAnswerShower(
+        setTimeout(() => {
+          showAnswer(text, index + 1)
+        }, interval)
+      )
     } else {
       // todo: 
       // history.pushState({}, null, "/question/" + window.newQuestionId);
@@ -71,12 +75,6 @@ function QuestionForm(props) {
   }
 
   function reset() {
-    console.log("reset!")
-    // it would seem that this is strictly ineffective in the upstream
-    // codebase.
-    //
-    // is there a better way to use state to model what's going on in
-    // the typing animation?
     clearTimeout(answerShower)
 
     questionTextareaRef.current.focus()
