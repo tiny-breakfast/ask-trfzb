@@ -4,9 +4,8 @@ require 'matrix'
 
 module Answer
     BOOK = './static/the-real-frank-zappa-book.pdf'
-    PAGES_CSV = CSV.read("#{BOOK}.pages.csv").drop(1).each do |row|
-        tokens = row[2]
-        row[2] = Integer(tokens)
+    PAGES_CSV = CSV.read("#{BOOK}.pages.csv", headers: %w(title content tokens)).drop(1).each do |row|
+        row["tokens"] = Integer(row["tokens"])
     end
     # key is "Page X", value is an 4096 element array of floats
     EMBEDDINGS =
@@ -102,9 +101,9 @@ module Answer
             chosen_sections_len = 0
 
             most_relevant_document_sections.each do |(_, section_index)|
-                document_section = pages_csv.select { |row| title = row[0]; title == section_index }.first
-                content = document_section[1]
-                tokens = document_section[2]
+                document_section = pages_csv.select { |row| row["title"] == section_index }.first
+                content = document_section["content"]
+                tokens = document_section["tokens"]
 
                 chosen_sections_len += (tokens + SEPARATOR_LEN)
 
