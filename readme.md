@@ -21,6 +21,11 @@ which ports [askmybook][askmybook] to Ruby and swaps out the book.
   something longer.~ "Pride & Prejudice" also has the benefit of being
   a stock English class book, so questions and answers about the book
   are easily found.
+  
+# to-do
+
+* use postgres https://devcenter.heroku.com/articles/sqlite3
+* deploy to heroku https://devcenter.heroku.com/articles/getting-started-with-rails7
 
 [challenge-docs]: https://gumroad.notion.site/Product-engineering-challenge-f7aa85150edd41eeb3537aae4632619f
 [askmybook]: https://github.com/slavingia/askmybook
