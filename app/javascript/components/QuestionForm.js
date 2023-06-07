@@ -18,6 +18,11 @@ function QuestionForm(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
+    if (document.getElementById("question").value == "") {
+      alert("Please ask a question!");
+      return false;
+    }
+
     setAsking(true)
 
     const form = e.target;
