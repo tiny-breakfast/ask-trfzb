@@ -28,7 +28,7 @@ RSpec.describe "POST /questions", type: :request do
             Question.create!(
                 question: "What's totally bitchen in Encino?",
                 answer: "There's, like, the Galleria, and, like, all these, like, really great shoe stores.",
-                context:"some kind of context",
+                context: "some kind of context",
             )
         end
 
