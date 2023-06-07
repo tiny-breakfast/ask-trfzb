@@ -67,9 +67,14 @@ end
 # Return a dictionary that maps between each embedding vector and the index of the row that it corresponds to.
 def compute_doc_embeddings(pages)
     pages.map do |page|
-        exponential_backoff {
+        embedding = exponential_backoff {
             STDERR.puts "getting embedding for page #{page[:title]}"
             get_doc_embedding(page[:content])
+        }
+
+        {
+            title: page[:title],
+            embedding: embedding,
         }
     end
 end
@@ -111,9 +116,7 @@ def main()
             # with more than 2046 tokens. I'm not sure what the intent
             # is, so I'm just gonna monkey-see-monkey-do for now.
 
-            # this should honestly just correspond exactly to whatever
-            # value in pages_csv.
-            row = [ "Page #{(index)}", *embedding ]
+            row = [ embedding[:title], embedding[:embedding] ]
             csv << row
         end
     end
