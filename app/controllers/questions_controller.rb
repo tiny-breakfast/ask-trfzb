@@ -33,7 +33,14 @@ class QuestionsController < ApplicationController
 
     def show
         question_id = params[:id]
-        question = Question.find(question_id)
+
+        begin
+            question = Question.find(question_id)
+        rescue ActiveRecord::RecordNotFound
+            redirect_to root_url
+            return
+        end
+
         render action: 'index', locals: {
             question: question.question,
             answer: question.answer,
