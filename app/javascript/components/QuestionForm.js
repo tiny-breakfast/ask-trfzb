@@ -11,7 +11,7 @@ function QuestionForm(props) {
   const [questionId, setQuestionId] = useState(props.questionId);
   const questionIdRef = useRef(questionId);
   const [answer, setAnswer] = useState(props.answer);
-  const [asking, setAsking] = useState(false);
+  const [status, setStatus] = useState("waiting");
   const [answerShower, setAnswerShower] = useState(NaN);
   const questionTextareaRef = useRef(null);
 
@@ -23,7 +23,7 @@ function QuestionForm(props) {
       return false;
     }
 
-    setAsking(true)
+    setStatus("asking")
 
     const form = e.target;
     const formData = new FormData(form);
@@ -42,6 +42,7 @@ function QuestionForm(props) {
       throw new Error("some kind of error, wish I knew");
     }).then((response) => {
       setQuestionId(response.id)
+      setStatus("answering")
       questionIdRef.current = response.id
       setAnswerShower(
         setTimeout(() => {
@@ -70,6 +71,7 @@ function QuestionForm(props) {
       )
     } else {
       history.pushState({}, null, "/questions/" + questionIdRef.current);
+      setStatus("done")
     }
   }
 
@@ -87,7 +89,7 @@ function QuestionForm(props) {
     questionTextareaRef.current.focus()
 
     setAnswer(null)
-    setAsking(false)
+    setStatus("waiting")
 
     history.pushState({}, null, "/");
   }
@@ -110,15 +112,15 @@ function QuestionForm(props) {
         </label>
 
         <div className="buttons" style={{display: answer === null ? 'block' : 'none' }}>
-          <button type="submit" id="ask-button" disabled={ asking === true ? "disabled" : "" }>
-            { !asking ? "Ask question" : "Asking..." }
+          <button type="submit" id="ask-button" disabled={ status === "waiting" ? "" : "disabled" }>
+            { status === "asking" ? "Asking..." : "Ask question" }
           </button>
 
-          <button id="lucky-button" style={{background: "#eee", borderColor: "#eee", color: "#444"}} disabled={ asking === true ? "disabled" : "" } onClick={handleLuck}>I'm feeling lucky</button>
+          <button id="lucky-button" style={{background: "#eee", borderColor: "#eee", color: "#444"}} disabled={ status === "asking" ? "disabled" : "" } onClick={handleLuck}>I'm feeling lucky</button>
         </div>
       </form>
 
-      <Answer answer={answer} reset={reset}/>
+      <Answer answer={answer} reset={reset} answering={status === "answering"}/>
     </React.Fragment>
   );
 }
@@ -126,7 +128,6 @@ function QuestionForm(props) {
 QuestionForm.propTypes = {
   question: PropTypes.string,
   answer: PropTypes.string,
-  asking: PropTypes.bool,
   answerShower: PropTypes.number,
 };
 export default QuestionForm

@@ -7,7 +7,7 @@ function Answer(props) {
         <strong>Answer:</strong> <span id="answer">{props.answer}</span>
       </p>
       <div className="buttons" style={{display: props.answer === null ? 'none' : 'block' }}>
-        <button id="ask-another-button" onClick={props.reset}>Ask another question</button>
+        <button id="ask-another-button" onClick={props.reset} style={{display: props.answering ? 'none' : 'block' }}>Ask another question</button>
       </div>
     </React.Fragment>
   );
