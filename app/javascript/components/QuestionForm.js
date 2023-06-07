@@ -109,7 +109,7 @@ function QuestionForm(props) {
 
   return (
     <React.Fragment>
-      <form method="post" onSubmit={handleSubmit}>
+      <form method="post" onSubmit={handleSubmit} id="question-form">
         <label>
           Ask a question: <textarea name="question" id="question" value={question} onChange={handleQuestionChange} ref={questionTextareaRef}></textarea>
         </label>
