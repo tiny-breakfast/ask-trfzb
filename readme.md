@@ -64,6 +64,16 @@ run `make test`.
   
   the functional code is dependent on the reuslt of the network IO, so
   I think that this order makes sense - it's linear.
+  
+  this module is meant to keep this rather involved code out of the
+  `QuestionsController`, in the interest of separating concerns. the
+  controller stays in charge of request input and generating the
+  response, but much of what happens in between has been factored
+  out. `QuestionsController#create` could be made smaller still, but I
+  think it reads well enough as is.
+  
+* the `Question` class does nothing. I'd rather keep business logic
+  out of Rails objects.
 
 ## things learned
 
