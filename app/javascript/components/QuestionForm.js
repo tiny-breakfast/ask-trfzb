@@ -112,7 +112,7 @@ function QuestionForm(props) {
           Ask a question: <textarea name="question" id="question" value={question} onChange={handleQuestionChange} ref={questionTextareaRef}></textarea>
         </label>
 
-        <div className="buttons" style={{display: answer === null ? 'block' : 'none' }}>
+        <div className="buttons" style={{display: answer === null ? '' : 'none' }}>
           <button type="submit" id="ask-button" disabled={ status === "waiting" ? "" : "disabled" }>
             { status === "asking" ? "Asking..." : "Ask question" }
           </button>
