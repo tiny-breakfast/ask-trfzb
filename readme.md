@@ -15,10 +15,10 @@ which ports [askmybook][askmybook] to Ruby and swaps out the book.
 
 * **why "Pride & Prejudice?** I would've liked to pick a book with
   less narrative and more point of view, but I couldn't think of a
-  freely available book that would qualify. I opted for Pride &
-  Prejudice somewhat arbitrarily, but figured its length approximated
+  freely available book that would qualify. I opted for "Pride &
+  Prejudice" somewhat arbitrarily, but figured its length approximated
   "the Minimalist Entrepreneur" better than something shorter or
-  something longer.~ "Pride & Prejudice" also has the benefit of being
+  something longer. "Pride & Prejudice" also has the benefit of being
   a stock English class book, so questions and answers about the book
   are easily found.
 
