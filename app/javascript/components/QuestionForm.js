@@ -87,6 +87,8 @@ function QuestionForm(props) {
     questionTextareaRef.current.focus()
 
     setAnswer(null)
+
+    history.pushState({}, null, "/");
   }
 
   return (
