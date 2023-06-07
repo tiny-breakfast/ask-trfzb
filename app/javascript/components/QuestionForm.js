@@ -28,11 +28,13 @@ function QuestionForm(props) {
     const form = e.target;
     const formData = new FormData(form);
 
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')
+
     fetch("/questions", {
       method: form.method,
       body: formData,
       headers: {
-        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+        "X-CSRF-Token": csrfToken && csrfToken.content,
       },
     }).then((data) => {
       if (data.ok) {
