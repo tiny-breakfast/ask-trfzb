@@ -4,3 +4,7 @@ static/pandp12p.pdf:
 .PHONY: test
 test:
 	bundle exec rspec
+
+.PHONY: run
+run:
+	bundle exec rails server

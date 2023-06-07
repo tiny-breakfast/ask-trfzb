@@ -3,6 +3,21 @@
 a [Gumroad product engineering challenge][challenge-docs] project
 which ports [askmybook][askmybook] to Ruby and swaps out the book.
 
+# running this locally
+
+run `make run`.
+
+## dependencies
+
+* ruby
+* postgres
+* nodejs
+* an OpenAI API key
+
+# running tests
+
+run `make test`.
+
 # notes
 
 * **why _not_ "Pride & Prejudice"?** after I'd gotten the app running
