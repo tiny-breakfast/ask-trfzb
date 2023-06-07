@@ -91,6 +91,16 @@ function QuestionForm(props) {
     history.pushState({}, null, "/");
   }
 
+  function handleLuck(e) {
+    const options = [
+      'What is "the Real Frank Zappa Book" about?',
+      "Who are the brain police?",
+    ]
+    const random = ~~(Math.random() * options.length)
+
+    setQuestion(options[random])
+  }
+
   return (
     <React.Fragment>
       <form method="post" onSubmit={handleSubmit}>
@@ -98,10 +108,12 @@ function QuestionForm(props) {
           Ask a question: <textarea name="question" id="question" value={question} onChange={handleQuestionChange} ref={questionTextareaRef}></textarea>
         </label>
 
-        <div className="buttons">
-          <button type="submit" id="ask-button" style={{display: answer === null ? 'block' : 'none' }} disabled={ asking === true ? "disabled" : "" }>
+        <div className="buttons" style={{display: answer === null ? 'block' : 'none' }}>
+          <button type="submit" id="ask-button" disabled={ asking === true ? "disabled" : "" }>
             { !asking ? "Ask question" : "Asking..." }
           </button>
+
+          <button id="lucky-button" style={{background: "#eee", borderColor: "#eee", color: "#444"}} disabled={ asking === true ? "disabled" : "" } onClick={handleLuck}>I'm feeling lucky</button>
         </div>
       </form>
 
