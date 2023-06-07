@@ -98,6 +98,7 @@ function QuestionForm(props) {
     const options = [
       'What is "the Real Frank Zappa Book" about?',
       "Who are the brain police?",
+      "Does humor belong in music?",
     ]
     const random = ~~(Math.random() * options.length)
 
