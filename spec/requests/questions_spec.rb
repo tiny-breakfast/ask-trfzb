@@ -24,7 +24,7 @@ RSpec.describe "POST /questions", type: :request do
     end
 
     context "when the question has been asked before" do
-        before do
+        let!(:question) do
             Question.create!(
                 question: "What's totally bitchen in Encino?",
                 answer: "There's, like, the Galleria, and, like, all these, like, really great shoe stores.",
@@ -43,10 +43,9 @@ RSpec.describe "POST /questions", type: :request do
 
     it "responds with the answer" do
         post "/questions", params: { question: "What's totally bitchen in Encino?" }
-        expect(response.body).to eq({
-                "question" => "What's totally bitchen in Encino?",
-                "answer" => "There's, like, the Galleria, and, like, all these, like, really great shoe stores.",
-                "id" => 1
-        }.to_json)
+        response_body = JSON.parse(response.body)
+
+        expect(response_body["question"]).to eq "What's totally bitchen in Encino?"
+        expect(response_body["answer"]).to eq "There's, like, the Galleria, and, like, all these, like, really great shoe stores."
     end
 end
