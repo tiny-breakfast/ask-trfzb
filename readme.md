@@ -74,6 +74,20 @@ run `make test`.
   
 * the `Question` class does nothing. I'd rather keep business logic
   out of Rails objects.
+  
+* the Ruby side of the project closely follows the model of the Python
+  code. it was straightforward to port the business logic of the
+  Python to Ruby basically line for line. Django and Rails parallel
+  each other, but hardly in a line-for-line way.
+  
+  the HTML is meant to very closely approximate the source HTML. the
+  main benefit of it this is that it allowed me to copy the CSS
+  verbatim and use all of that styling for free.
+  
+  the JavaScript side does lean on the source code, but my approach
+  wasn't to try to port it line-by-line. I let React, and my knowledge
+  of the desired behavior, guide my work, rather than focus on porting
+  the source JS bit by bit.
 
 ## things learned
 
@@ -104,7 +118,8 @@ expressed with obscure content that OpenAI hasn't been trained on.
 * I'd love to write it in Clojure.
 * there are a number of finer points of React components that I'd like
   to explore more deeply. for example, I feel that my use of the
-  `questionIdRef` is hacky, as are my nested `showAnswer` callbacks.
+  `questionIdRef` is hacky, as are my nested `showAnswer`
+  callbacks. I'd definitely push more on my React skills.
 
 [challenge-docs]: https://gumroad.notion.site/Product-engineering-challenge-f7aa85150edd41eeb3537aae4632619f
 [askmybook]: https://github.com/slavingia/askmybook
