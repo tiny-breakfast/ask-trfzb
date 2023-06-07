@@ -22,12 +22,6 @@ which ports [askmybook][askmybook] to Ruby and swaps out the book.
   a stock English class book, so questions and answers about the book
   are easily found.
 
-# to-do
-
-* render a fancier react component; shakapacker specific instructions
-  here https://github.com/reactjs/react-rails what should it be?
-  perhaps the form to input a question?
-
 [challenge-docs]: https://gumroad.notion.site/Product-engineering-challenge-f7aa85150edd41eeb3537aae4632619f
 [askmybook]: https://github.com/slavingia/askmybook
 [yahoo-news]: https://news.yahoo.com/top-50-books-being-used-100200591.html
