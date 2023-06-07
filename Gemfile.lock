@@ -270,6 +270,7 @@ DEPENDENCIES
   capybara
   debug
   jbuilder
+  matrix (~> 0.4.2)
   pdf-reader (~> 2.11)
   pg
   puma (~> 5.0)
