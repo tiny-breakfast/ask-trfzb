@@ -22,6 +22,65 @@ which ports [askmybook][askmybook] to Ruby and swaps out the book.
   a stock English class book, so questions and answers about the book
   are easily found.
 
+# explanation
+
+>Explain a couple of the big architectural decisions you've made, and
+>anything you learned/would do differently the next time around
+
+## architectural decisions
+
+* this is a Rails project, and does not intentionally deviate from any
+  Rails project conventions. likewise, I chose to use a library to
+  help me integrate React into this project. working with these
+  conventions rather than against them let me focus on what the app
+  does and how it does it.
+  
+* the `Answer` module which does the heavy lifting of querying OpenAI
+  is not a class. I don't think that there'd be anything to gain by
+  defining a constructor, getters and setters; the module and
+  functions provide sufficient organization. within it, I chose to
+  make the network requests more visible, at the top-level
+  `answer_question` function. the idea is to lay out the function like
+  this:
+  
+  * network IO
+  * functional code
+  * network IO
+  
+  the functional code is dependent on the reuslt of the network IO, so
+  I think that this order makes sense - it's linear.
+
+## things learned
+
+### OpenAI
+
+I learned about OpenAI, period. I had no experience with it in any
+form, by choice. working on this project has helped me to develop my
+point of view on OpenAI.
+
+it was strange to discover that OpenAI's "Pride and Prejudice" answers
+were too good, and to then consider why that might be. because OpenAI
+is a black box full of information, it seems hard to gauge how good my
+completion prompt is. I can imagine giving OpenAI a totally useless
+prompt which it basically ignores in favor of what it already knows.
+
+because it's hard to gauge the efficacy of a prompt and context when
+OpenAI might just know too much about the topic, it might be
+interesting to flip this challenge on its head and construct prompts
+with the intent of distortion OpenAI's answers - this kind of approach
+might say more about the influence of the prompt on the completion
+result.
+
+othrewise, I think that the essence of this project would be best
+expressed with obscure content that OpenAI hasn't been trained on.
+
+## things I would do different next time around
+
+* I'd love to write it in Clojure.
+* there are a number of finer points of React components that I'd like
+  to explore more deeply. for example, I feel that my use of the
+  `questionIdRef` is hacky, as are my nested `showAnswer` callbacks.
+
 [challenge-docs]: https://gumroad.notion.site/Product-engineering-challenge-f7aa85150edd41eeb3537aae4632619f
 [askmybook]: https://github.com/slavingia/askmybook
 [yahoo-news]: https://news.yahoo.com/top-50-books-being-used-100200591.html
