@@ -115,11 +115,16 @@ expressed with obscure content that OpenAI hasn't been trained on.
 
 ## things I would do different next time around
 
-* I'd love to write it in Clojure.
-* there are a number of finer points of React components that I'd like
-  to explore more deeply. for example, I feel that my use of the
-  `questionIdRef` is hacky, as are my nested `showAnswer`
-  callbacks. I'd definitely push more on my React skills.
+I'd definitely push more on my React skills. there are a number of
+finer points of React components that I'd like to explore more
+deeply. for example, I feel that my use of the `questionIdRef` is
+hacky, as are my nested `showAnswer` callbacks.
+
+I would try write the Ruby port of the Python code to be less of a
+line-for-line port. doing it line-for-line was a pragmatic choice that
+helped me to implement the code and learn about it at the same time. I
+think that the code could be pared down more to its essence by not
+feeling obligated to port it line-for-line.
 
 [challenge-docs]: https://gumroad.notion.site/Product-engineering-challenge-f7aa85150edd41eeb3537aae4632619f
 [askmybook]: https://github.com/slavingia/askmybook
